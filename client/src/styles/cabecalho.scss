@@ -1,0 +1,13 @@
+@use './variable.scss' as *;
+
+.container {
+    background-color: $cor-destaque;
+    width: 100vw;
+    padding: 0.5rem;
+    text-align: center;
+
+    .titulo {
+        font-size: 26px;
+        color: $link-color;
+    }
+}

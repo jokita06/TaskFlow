@@ -1,0 +1,30 @@
+@use '../styles/variable.scss' as *;
+
+.barra {
+    width: 100vw;
+    padding: 1rem;
+    color: $link-color;
+    background-color: $cor-secundaria;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    ul {
+        font-size:  $font-size;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 1rem;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: $link-color;
+        cursor: pointer;
+    }
+}
