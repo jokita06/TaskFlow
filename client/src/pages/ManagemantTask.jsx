@@ -2,6 +2,7 @@ import { Card } from "../components/Card"
 import '../styles/managementTask.scss'
 
 export function ManagementTask() {
+
     return (
         <main>
             <section className="managementTask">
@@ -9,18 +10,19 @@ export function ManagementTask() {
                 
                 <div className="managementCard">
                     <article>
-                        <h3>fazer</h3>
-                        <Card/>
+                        <h3>Fazer</h3>
+                        <Card status="Fazer"/>
+                        
                     </article>
 
                     <article>
                         <h3>Fazendo</h3>
-                        <Card/>
+                        <Card status="Fazendo"/>
                     </article>
 
                     <article>
-                        <h3>Pronto</h3>
-                        <Card/>
+                        <h3>Feito</h3>
+                        <Card status="Feito"/>
                     </article>
                 </div>
             </section>

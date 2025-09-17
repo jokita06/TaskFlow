@@ -1,8 +1,35 @@
+@use './variable.scss' as *;
+
 .card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: start;
+    background-color: $gray;
     border-radius: 8px;
     padding: 16px;
     margin: 8px 0;
-    box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.1);
+    gap: 25px;
+
+    h4 {
+        font-size: 1.2rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .btns {
+        margin-top: 8px;
+        display: flex;
+        gap: 5px;
+
+        .btn {
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            border: none;
+            background-color: $font-color;
+            color: $link-color;
+        }
+    }
 }
