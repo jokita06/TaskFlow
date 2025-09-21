@@ -1,35 +1,70 @@
 @use './variable.scss' as *;
 
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: start;
-    background-color: $gray;
-    border-radius: 8px;
-    padding: 16px;
-    margin: 8px 0;
-    gap: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  min-height: 400px;
+  
+  .cardItem {
+    background: white;
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+
 
     h4 {
-        font-size: 1.2rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: $font-color;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
     p {
-        font-size: 0.9rem;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: lighten($font-color, 20%);
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '';
+        display: inline-block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: lighten($font-color, 40%);
+        margin-right: 8px;
+      }
     }
 
     .btns {
-        margin-top: 8px;
-        display: flex;
-        gap: 5px;
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.8rem;
 
-        .btn {
-            padding: 0.3rem 0.7rem;
-            border-radius: 20px;
-            border: none;
-            background-color: $font-color;
-            color: $link-color;
+      .btn {
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: none;
+        font-size: 0.85rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        
+        &:first-child {
+          background-color: $cor-destaque;
+          color: $link-color
         }
+        
+        &:last-child {
+          border: 2px solid $cor-destaque;
+          color: $cor-destaque;
+        }
+      }
     }
+  }
 }

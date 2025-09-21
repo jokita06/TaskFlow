@@ -4,6 +4,9 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { email, z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { IoAlertCircle } from "react-icons/io5";
+import { FaCheck } from "react-icons/fa";
+import { GoAlertFill } from "react-icons/go";
  
 const schemaSignUp = z.object({
     username: z.string()
@@ -19,9 +22,19 @@ const schemaSignUp = z.object({
         })    
     
 })
+
+function ErrorMessage({ error }) {
+    if (!error) return null;
+    return (
+        <p className="error">
+            <IoAlertCircle /> {error.message}
+        </p>
+    );
+}
  
 export function SignUp() {
     const [mensagem, setMensagem] = useState('');
+    const [tipoMensagem, setTipoMensagem] = useState('')
  
     const {
         register, // registra o que o usuário digitou
@@ -38,48 +51,53 @@ export function SignUp() {
         try {
             await api.post('usuario/', data);
             setMensagem("Cadastrado com sucesso!");
+            setTipoMensagem("sucesso");
    
             reset();
         } catch (error) {
             setMensagem('Ocorreu um erro, tente novamente!');
             console.log(error);
+            setTipoMensagem("erro");
         }
     }
  
     return (
-        <form className="formulario" method='POST' onSubmit={handleSubmit(obterDados)}>
-            <h1>Cadastro de Usuário</h1>
+        <main>
+            <form className="formulario" method='POST' onSubmit={handleSubmit(obterDados)}>
+                <h1>Cadastro de Usuário</h1>
 
-            <div className='inputGroup'>
-                <label>Nome</label>
-                <input
-                    type="text"
-                    {...register('username')}
-                    placeholder='Digite seu nome...'
-                />
-                {errors.username &&
-                    <p>{errors.username.message}</p>
-                }
-            </div>
-            
-            <div className='inputGroup'>
-                <label>E-mail</label>
-                <input
-                    type="text"
-                    {...register('email')}
-                    placeholder='Digite seu email...'
-                />
-                {errors.username &&
-                <p>{errors.email.message}</p>
-                }
-            </div>
-            
+                <div className='inputGroup'>
+                    <label>Nome</label>
+                    <input
+                        type="text"
+                        {...register('username')}
+                        placeholder='Digite seu nome...'
+                    />
+                    <ErrorMessage error={errors.username}/>
+                </div>
+                
+                <div className='inputGroup'>
+                    <label>E-mail</label>
+                    <input
+                        type="text"
+                        {...register('email')}
+                        placeholder='Digite seu email...'
+                    />
+                    <ErrorMessage error={errors.email}/>
+                </div>
+                
 
-            <div>
-                <button type="submit" className="SubmitBtn">Cadastrar</button>
-                <p>{mensagem}</p>
-            </div>
-        </form>
+                <div>
+                    <button type="submit" className="SubmitBtn">Cadastrar</button>
+                    <p className={`mensagem ${tipoMensagem}`}>
+                        {tipoMensagem === 'sucesso' && <FaCheck />}
+                        {tipoMensagem == 'erro' && <GoAlertFill />}
+                        {mensagem}
+                    </p>
+                </div>
+            </form>
+        </main>
+        
     )
 }
  

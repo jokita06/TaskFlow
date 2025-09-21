@@ -5,6 +5,15 @@ import '../styles/card.scss'
 export function Card({ status }) {
   const [tasks, setTasks] = useState([]);
 
+  const [formData, setFormData] = useState({
+    nome: '',
+    descricao: '',
+    prioridade: '',
+    criador: '',
+    status: ''
+  })
+  const [criador, setCriador] = useState([]);
+
   useEffect(() => {
     async function fetchTasks() {
       try {
@@ -18,9 +27,30 @@ export function Card({ status }) {
     fetchTasks();
   }, [status]);
 
-  async function editTask(id) {
+  const handleEdit = (tasksId) => {
+    const taskToEdit = tasks.find(task => task.id === tasksId);
+    if (taskToEdit) {
+      setFormData({
+        nome: taskToEdit.nome,
+        descricao: taskToEdit.descricao,
+        prioridade: taskToEdit.prioridade,
+        criador: taskToEdit.criador,
+        status: taskToEdit.status
+      });
+    }
+  }
 
+  const handleDelete = async (tasksId) => {
+    try {
+      await api.delete(`tarefas/${tasksId}/`);
+      setTasks(tasks.filter(task => task.id !== tasksId));
 
+      const response = await api.get('tarefas/');
+      setTasks(response.data);
+
+    } catch (error) {
+      console.log('Erro ao excluir tarefa:', error);
+    }
   }
 
   return (
@@ -34,8 +64,8 @@ export function Card({ status }) {
           <p>Status: {task.status}</p>
 
           <div className='btns'>
-            <button className='btn'>Editar</button>
-            <button className='btn'>Excluir</button>
+            <button className='btn' onClick={() => handleEdit(task.id)}>Editar</button>
+            <button className='btn' onClick={() => handleDelete(task.id)}>Excluir</button>
           </div>
         </div>
       ))}

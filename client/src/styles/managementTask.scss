@@ -1,31 +1,47 @@
 @use './variable.scss' as *;
 
 .managementTask {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f5f7fa;
+
+  h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: $font-color;
+    text-align: start;
+    margin-bottom: 1rem;
+  }
+
+  .managementCard {
     display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1.5rem;
-    text-align: center;
-    width: 100%;
-
-    h2 {
-        font-size: 1.6rem;
-    }
-
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
 
     article {
-        padding: 1rem;
-        width: 22rem;
-        border-radius: 0.5rem;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        background-color: $link-color;
+      flex: 1;
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      
+      h3 {
+        background: $font-color;
+        color: white;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin: -1.5rem -1.5rem 1.5rem -1.5rem;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 600;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+      }
     }
-
-    .managementCard {
-        display: flex;
-        flex-direction: row;
-        gap: 1rem;
-        justify-content: center;
-
-    }
+  }
+  
 }

@@ -1,48 +1,124 @@
 @use './variable.scss' as *;
 
 .formulario {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 35rem;
+  gap: 1.8rem;
+  margin: 3rem auto;
+  background: linear-gradient(135deg, $link-color, lighten($link-color, 10%));
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 2.5rem 2rem;
+  border-radius: 1rem;
+  animation: fadeIn 0.4s ease-in-out;
+
+  h1 {
+    text-align: center;
+    font-family: $font;
+    font-size: 1.8rem;
+    color: $font-color;
+    margin-bottom: 1rem;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 1rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-color: $gray;
+    font-family: $font;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+
+    &:focus {
+      border-color: $font-color;
+      box-shadow: 0 0 8px rgba($font-color, 0.3);
+      background-color: lighten($gray, 3%);
+    }
+  }
+
+  textarea {
+    resize: none;
+    min-height: 6rem;
+  }
+
+  .inputGroup {
     display: flex;
     flex-direction: column;
-    width: 30rem;
-    gap: 1.5rem;
-    margin: 2rem;
-    background-color: $link-color;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    padding: 2rem 2rem;
-    margin: 0 auto;
+    gap: 6px;
 
-    h1 {
-        text-align: center;
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: darken($font-color, 10%);
     }
+  }
 
-    input, textarea, select {
-        padding: 1rem;
-        outline: none;
-        border-radius: 5px;
-        border: none;
-        background-color: $gray;
-    }
+  .SubmitBtn {
+    background: $font-color;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 
-    textarea {
-        resize: none;
-        font-family: $font;
-    }
-    
-    .inputGroup {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+    &:hover {
+      background: darken($font-color, 8%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba($font-color, 0.3);
     }
 
-    .SubmitBtn {
-        background-color: $font-color;
-        border: none;
-        padding: 0.5rem 1.8rem;
-        border-radius: 20px;
-        color: white;
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .error {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: red;
+    background-color: rgb(255, 225, 225);
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+  }
+
+  .mensagem {
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.7rem 1rem;
+
+    &.sucesso {
+      color: rgb(6, 140, 6);
+      background-color: rgb(215, 247, 215);
+      border-left: 4px solid rgb(6, 140, 6);
     }
 
-    p {
-        color: red;
+    &.erro {
+      color: rgb(175, 6, 6);
+      background-color: rgb(247, 202, 202);
+      border-left: 4px solid rgb(175, 6, 6);
     }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

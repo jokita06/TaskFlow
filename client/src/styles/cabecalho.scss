@@ -1,13 +1,32 @@
 @use './variable.scss' as *;
 
 .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: $cor-destaque;
-    width: 100vw;
-    padding: 0.5rem;
+    padding: 1.5rem 1rem;
     text-align: center;
 
     .titulo {
         font-size: 26px;
         color: $link-color;
+    }
+
+    .barra {
+        display: flex;
+        align-items: center;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: row;
+        list-style: none;
+        gap: 15px;
+
+        a {
+            color: $link-color;
+            text-decoration: none;
+        }
     }
 }

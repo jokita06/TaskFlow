@@ -9,4 +9,4 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class TarefasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarefa
-        fields = '__all__'
+        fields = ['nome', 'descricao', 'setor', 'criador', 'prioridade', 'status']
