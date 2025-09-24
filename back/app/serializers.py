@@ -9,4 +9,9 @@ class UsuarioSerializer(serializers.ModelSerializer):
 class TarefasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tarefa
-        fields = ['nome', 'descricao', 'setor', 'criador', 'prioridade', 'status']
+        fields = ['id', 'nome', 'descricao', 'setor', 'criador', 'prioridade', 'status']
+    
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['criador'] = instance.criador.username if instance.criador else None
+        return representation

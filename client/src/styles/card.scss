@@ -68,3 +68,56 @@
     }
   }
 }
+
+.modalEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  h3 {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  .inputGroup {
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.3rem;
+
+    input,
+    textarea,
+    select {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      width: 100%;
+      background-color: $gray;
+      font-family: $font;
+      resize: none;
+      transition: all 0.3s ease;
+
+      &:focus {
+        border-color: $font-color;
+        box-shadow: 0 0 8px rgba($font-color, 0.3);
+        background-color: lighten($gray, 3%);
+      }
+    }
+  }
+
+  button {
+    background-color: $font-color;
+    color: $link-color;
+    border: none;
+    padding: 0.4rem 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .btnsDelete {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+  } 
+}

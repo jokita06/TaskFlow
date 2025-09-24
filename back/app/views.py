@@ -15,3 +15,8 @@ class TarefasDetail(RetrieveUpdateDestroyAPIView):
     serializer_class = TarefasSerializer
     queryset = Tarefa.objects.all()
     lookup_field = 'pk'
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+    

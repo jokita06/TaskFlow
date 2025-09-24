@@ -10,18 +10,17 @@ export function ManagementTask() {
                 
                 <div className="managementCard">
                     <article>
-                        <h3>Fazer</h3>
+                        <h3 className="titleColumn">Fazer</h3>
                         <Card status="Fazer"/>
-                        
                     </article>
 
                     <article>
-                        <h3>Fazendo</h3>
+                        <h3 className="titleColumn">Fazendo</h3>
                         <Card status="Fazendo"/>
                     </article>
 
                     <article>
-                        <h3>Feito</h3>
+                        <h3 className="titleColumn">Feito</h3>
                         <Card status="Feito"/>
                     </article>
                 </div>
