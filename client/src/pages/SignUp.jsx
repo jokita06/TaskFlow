@@ -67,8 +67,9 @@ export function SignUp() {
                 <h1>Cadastro de Usuário</h1>
 
                 <div className='inputGroup'>
-                    <label>Nome</label>
+                    <label htmlFor='name'>Name</label>
                     <input
+                        id='name'
                         type="text"
                         {...register('username')}
                         placeholder='Digite seu nome...'
@@ -77,8 +78,9 @@ export function SignUp() {
                 </div>
                 
                 <div className='inputGroup'>
-                    <label>E-mail</label>
+                    <label htmlFor='email'>E-mail</label>
                     <input
+                        id='email'
                         type="text"
                         {...register('email')}
                         placeholder='Digite seu email...'

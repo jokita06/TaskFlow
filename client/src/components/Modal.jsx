@@ -1,4 +1,4 @@
-import './Modal.scss';
+import '../styles/modal.scss';
 
 export function Modal({ children, onClose }) {
   return (
