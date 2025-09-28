@@ -1,4 +1,4 @@
-import '../styles/cabecalho.scss'
+import '../styles/Header.scss'
 import { Link } from 'react-router-dom'
 
 export function Cabecalho() {

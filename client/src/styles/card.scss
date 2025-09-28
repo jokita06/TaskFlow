@@ -1,13 +1,18 @@
-@use './variable.scss' as *;
+@use './Variable.scss' as *;
 
 .card {
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
   min-height: 400px;
+
+  .emptyMessage {
+    font-size: 1.1rem;
+  }
   
   .cardItem {
     background: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 12px;
     padding: 1.2rem;
     transition: all 0.3s ease;
