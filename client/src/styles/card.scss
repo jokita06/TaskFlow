@@ -4,10 +4,10 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  min-height: 400px;
+  width: 400px;
 
   .emptyMessage {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   
   .cardItem {
@@ -19,7 +19,7 @@
 
 
     h4 {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
       color: $font-color;
       margin-bottom: 0.8rem;
@@ -28,22 +28,13 @@
     }
 
     p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       line-height: 1.5;
       color: lighten($font-color, 20%);
       margin-bottom: 0.6rem;
       display: flex;
       align-items: center;
-      
-      &::before {
-        content: '';
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: lighten($font-color, 40%);
-        margin-right: 8px;
-      }
+      text-decoration: none;
     }
 
     .btns {
@@ -55,7 +46,7 @@
         padding: 0.5rem 1rem;
         border-radius: 6px;
         border: none;
-        font-size: 0.85rem;
+        font-size: 0.7rem;
         font-weight: 500;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -125,4 +116,22 @@
     gap: 10px;
     justify-content: center;
   } 
+}
+
+.dragArea {
+  .statusSelect {
+    padding: 0.3rem 0.5rem;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-color: $gray;
+    font-family: $font;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    margin-left: 0.5rem;
+
+    &:focus {
+      border-color: $font-color;
+      box-shadow: 0 0 8px rgba($font-color, 0.3);
+    }
+  }
 }

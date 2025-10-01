@@ -168,14 +168,14 @@ export function RegisterTask() {
 					<ErrorMessage error={errors.status} />
 				</div>
 
-				<div>
+				<span>
 					<button className="SubmitBtn" type="submit">Cadastrar</button>
 					<p className={`mensagem ${tipoMensagem}`}>
                         {tipoMensagem === 'sucesso' && <FaCheck />}
                         {tipoMensagem == 'erro' && <GoAlertFill />}
                         {mensagem}
                     </p>
-				</div>
+				</span>
 			</form>
 		</main>
 	);

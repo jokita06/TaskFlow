@@ -61,7 +61,7 @@ export function ManagementTask() {
 	return (
 		<main>
 			<section className="managementTask">
-				<h2>Tarefas</h2>
+				<h2>Suas Tarefas</h2>
 
 				<DndContext
 					onDragStart={(event) => setActiveId(event.active.id)}

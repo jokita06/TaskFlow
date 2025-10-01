@@ -5,18 +5,18 @@
   flex-direction: column;
   width: 100%;
   max-width: 35rem;
-  gap: 1.8rem;
+  gap: 1.7rem;
   margin: 3rem auto;
   background: linear-gradient(135deg, $link-color, lighten($link-color, 10%));
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   padding: 2.5rem 2rem;
-  border-radius: 1rem;
+  border-radius: 10px;
   animation: fadeIn 0.4s ease-in-out;
 
   h1 {
     text-align: center;
     font-family: $font;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: $font-color;
     margin-bottom: 1rem;
   }
@@ -24,16 +24,18 @@
   input,
   textarea,
   select {
-    padding: 1rem;
-    border-radius: 8px;
-    border: 2px solid transparent;
+    padding: 0.8rem;
+    border-radius: 5px;
+    border-bottom: 2px solid transparent;
+    border: none;
     background-color: $gray;
     font-family: $font;
-    font-size: 1rem;
-    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    transition: all 0.1s ease;
+    outline: none;
 
     &:focus {
-      border-color: $font-color;
+      border-bottom: 2px solid $font-color;
       box-shadow: 0 0 8px rgba($font-color, 0.3);
       background-color: lighten($gray, 3%);
     }
@@ -59,11 +61,11 @@
   .SubmitBtn {
     background: $font-color;
     border: none;
-    padding: 0.8rem 2rem;
+    padding: 0.6rem 1.6rem;
     border-radius: 25px;
     color: white;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 0.8rem;
     cursor: pointer;
     transition: all 0.3s ease;
 
