@@ -1,26 +1,32 @@
-import '../styles/header.scss'
-import { Link } from 'react-router-dom'
+import '../styles/header.scss';
+import { Link } from 'react-router-dom';
 
 export function Cabecalho() {
     return (
         <header className="container">
-            <h1 className="titulo">TaskFlow</h1>
+            <Link to="/" className="logo">
+                <h1 className="titulo">TaskFlow</h1>
+            </Link>
 
-            <nav className='barra'>
-                <ul>
-                    <Link to="/SignUp">
-                        <li>Cadastro de Usuários</li>
-                    </Link>
-
-                    <Link to="/RegisterTask">
-                        <li>Cadastro de Tarefa</li>
-                    </Link>
-
-                    <Link to="/ManagementTask">
-                        <li>Gerenciar Tarefas</li>
-                    </Link>
+            <nav className="nav">
+                <ul className="nav-list">
+                    <li className="nav-item">
+                        <Link to="/SignUp" className="nav-link">
+                            Cadastro de Usuários
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/RegisterTask" className="nav-link">
+                            Cadastro de Tarefa
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/ManagementTask" className="nav-link">
+                            Gerenciar Tarefas
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>
-    )
+    );
 }

@@ -1,6 +1,6 @@
 @use './Variable.scss' as *;
 
-.managementTask {
+.management-task {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -9,15 +9,25 @@
   min-height: 100vh;
   background-color: #f5f7fa;
 
-  h2 {
+  .management-header {
+    margin-bottom: 1rem;
+  }
+
+  .management-title {
     font-size: 2rem;
     font-weight: 700;
     color: $font-color;
     text-align: start;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
   }
 
-  .managementCard {
+  .management-description {
+    color: #666;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .management-card {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
@@ -27,20 +37,48 @@
 
 .column {
   background: white;
-  border-radius: 0px;
-  padding: 1.5rem;
+  border-radius: 8px;
+  padding: 0;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  border-radius: 0 0 5px 5px;
+  min-height: 400px;
   
-  .titleColumn {
+  &.column-over {
+    background-color: #f0f8ff;
+    box-shadow: 0 0 0 2px $font-color;
+  }
+
+  .column-header {
     background: $font-color;
     color: white;
-    padding: 0.7rem 1rem;
-    border-radius: 5px 5px 0px 0px;
-    margin: -1.5rem -1.5rem 1.5rem -1.5rem;
-    text-align: center;
-    font-size: 1.2rem;
-    font-weight: 600;
+    padding: 1rem 1.5rem;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
   }
+
+  .column-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 0;
+  }
+
+  .column-count {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+  }
+
+  .column-content {
+    padding: 1.5rem;
+  }
+}
+
+.column:focus-within {
+  outline: 2px solid $font-color;
+  outline-offset: 2px;
 }

@@ -13,14 +13,14 @@ function TaskItem({ item, status, onOpenModal, onUpdateStatus }) {
 	});
 
 	return (
-		<div ref={setNodeRef} className="cardItem">
-			<div className="dragArea" {...attributes} {...listeners}>
+		<article ref={setNodeRef} className="cardItem" aria-label={`Tarefa: ${item.nome}`}>
+			<div className="dragArea" {...attributes} {...listeners} role="" aria-label="Área de arrastar">
 				<h4>{item.nome}</h4>
 				<p>Descrição: {item.descricao}</p>
 				<p>Prioridade: {item.prioridade}</p>
 				<p>Criador: {item.criador?.username ?? item.criador}</p>
 
-				<div>
+				<div role="group">
 					<label>Status:</label>
 					<select
 						value={item.status}
@@ -35,7 +35,7 @@ function TaskItem({ item, status, onOpenModal, onUpdateStatus }) {
 				</div>
 			</div>
 
-			<div className="btns">
+			<div className="btns" role="group" aria-label="Botões de editar e excluir tarefa">
 				<button className="btn" onClick={() => onOpenModal(item, "edit")}>
 					Editar
 				</button>
@@ -43,7 +43,7 @@ function TaskItem({ item, status, onOpenModal, onUpdateStatus }) {
 					Excluir
 				</button>
 			</div>
-		</div>
+		</article>
 	);
 }
 
@@ -117,23 +117,18 @@ export function Card({ tasks, status, setAllTasks }) {
 		}
 	};
 
-	// Nova função: atualiza status (optimistic update + patch)
 	const updateStatus = async (id, newStatus) => {
 		try {
-			// atualização otimista na UI
 			setAllTasks((prev) => prev.map((t) => (t.id === id ? { ...t, status: newStatus } : t)));
-
-			// persiste no backend
 			await api.patch(`tarefas/${id}`, { status: newStatus });
 		} catch (error) {
 			console.error("Erro ao atualizar status:", error);
-			// opcional: reverter o optimistic update ou refetch
-			// aqui podemos refazer a lista do servidor se necessário
+
 		}
 	};
 
 	return (
-		<div className="card">
+		<section className="card" aria-label={`Coluna de tarefas: ${status}`}>
 			{tasks.length > 0 ? (
 				tasks.map((item) => (
 					<TaskItem
@@ -154,26 +149,29 @@ export function Card({ tasks, status, setAllTasks }) {
 						<form className="modalEdit" onSubmit={handleEdit}>
 							<h3>Editar Tarefa</h3>
 
-							<div className="inputGroup">
-								<label>Nome</label>
+							<div className="inputGroup" role="group">
+								<label htmlFor="name">Nome</label>
 								<input
+									id="name"
 									type="text"
 									value={data.nome}
 									onChange={(e) => setData({ ...data, nome: e.target.value })}
 								/>
 							</div>
 
-							<div className="inputGroup">
-								<label>Descrição:</label>
+							<div className="inputGroup" role="group">
+								<label htmlFor="descricao">Descrição:</label>
 								<textarea
+									id="descricao"
 									value={data.descricao}
 									onChange={(e) => setData({ ...data, descricao: e.target.value })}
 								/>
 							</div>
 
-							<div className="inputGroup">
-								<label>Prioridade</label>
+							<div className="inputGroup" role="group">
+								<label htmlFor="prioridade">Prioridade</label>
 								<select
+									id="prioridade"
 									value={data.prioridade}
 									onChange={(e) => setData({ ...data, prioridade: e.target.value })}
 								>
@@ -184,12 +182,9 @@ export function Card({ tasks, status, setAllTasks }) {
 								</select>
 							</div>
 
-							<div className="inputGroup">
-								<label>Criador</label>
-								<select
-									value={data.criador}
-									onChange={(e) => setData({ ...data, criador: parseInt(e.target.value) })}
-								>
+							<div cclassName="inputGroup" role="group">
+								<label htmlFor="criador">Criador</label>
+								<select id="criador" value={data.criador} onChange={(e) => setData({ ...data, criador: parseInt(e.target.value) })}>
 									<option value="">Selecione</option>
 									{users.map((user) => (
 										<option key={user.id} value={user.id}>
@@ -199,9 +194,9 @@ export function Card({ tasks, status, setAllTasks }) {
 								</select>
 							</div>
 
-							<div className="inputGroup">
-								<label>Status</label>
-								<select value={data.status} onChange={(e) => setData({ ...data, status: e.target.value })}>
+							<div className="inputGroup" role="group">
+								<label htmlFor="status">Status</label>
+								<select id="status" value={data.status} onChange={(e) => setData({ ...data, status: e.target.value })}>
 									<option value="">Selecione</option>
 									<option value="Fazer">Fazer</option>
 									<option value="Fazendo">Fazendo</option>
@@ -216,7 +211,7 @@ export function Card({ tasks, status, setAllTasks }) {
 					)}
 
 					{modalType === "delete" && (
-						<div className="modalEdit">
+						<div className="modalEdit" aria-label="Confirmação de exclusão">
 							<h3>Tem certeza que deseja excluir?</h3>
 							<div className="btnsDelete">
 								<button onClick={handleDelete}>Confirmar</button>
@@ -226,6 +221,6 @@ export function Card({ tasks, status, setAllTasks }) {
 					)}
 				</Modal>
 			)}
-		</div>
+		</section>
 	);
 }

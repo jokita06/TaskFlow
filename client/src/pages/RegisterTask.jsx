@@ -100,82 +100,96 @@ export function RegisterTask() {
 
 	return (
 		<main>
-			<form className="formulario" method="POST" onSubmit={handleSubmit(createTask)}>
-				<h1>Cadastro de Tarefas</h1>
+			<form 
+				className="formulario" 
+				method="POST" 
+				onSubmit={handleSubmit(createTask)}
+				aria-labelledby="formTitle"
+			>
+				<h1 id="formTitle">Cadastro de Tarefas</h1>
 
-				<div className="inputGroup">
-					<label>Nome:</label>
+				<div className="inputGroup" role="group" aria-labelledby="labelNome">
+					<label htmlFor="nome">Nome</label>
 					<input
-						type="text"
-						{...register('nome')}
-						placeholder="Informe o nome da tarefa..."
+					id="nome"
+					type="text"
+					{...register('nome')}
+					placeholder="Informe o nome da tarefa..."
+					aria-invalid={errors.nome ? "true" : "false"}
 					/>
 					<ErrorMessage error={errors.nome} />
 				</div>
 
-				<div className="inputGroup">
-					<label>Descrição</label>
+				<div className="inputGroup" role="group" aria-labelledby="labelDescricao">
+					<label htmlFor="descricao">Descrição</label>
 					<textarea
-						type="text"
-						{...register('descricao')}
-						placeholder="Descreva a tarefa..."
+					id="descricao"
+					{...register('descricao')}
+					placeholder="Descreva a tarefa..."
+					aria-invalid={errors.descricao ? "true" : "false"}
 					/>
 					<ErrorMessage error={errors.descricao} />
 				</div>
 
-				<div className="inputGroup">
-					<label>Setor</label>
+				<div className="inputGroup" role="group" aria-labelledby="labelSetor">
+					<label htmlFor="setor">Setor</label>
 					<input
-						type="text"
-						{...register('setor')}
-						placeholder="Informe o setor..."
+					id="setor"
+					type="text"
+					{...register('setor')}
+					placeholder="Informe o setor..."
+					aria-invalid={errors.setor ? "true" : "false"}
 					/>
 					<ErrorMessage error={errors.setor} />
 				</div>
 
-				<div className="inputGroup">
-					<label>Criador</label>
-					<select {...register('criador', { valueAsNumber: true })}>
-						<option value="">Selecione um criador</option>
-						{users.map(user => (
-							<option key={user.id} value={user.id}>
-								{user.username}
-							</option>
-						))}
+				<div className="inputGroup" role="group" aria-labelledby="labelCriador">
+					<label htmlFor="criador">Criador</label>
+					<select id="criador" {...register('criador', { valueAsNumber: true })}>
+					<option value="">Selecione um criador</option>
+					{users.map(user => (
+						<option key={user.id} value={user.id}>
+						{user.username}
+						</option>
+					))}
 					</select>
 					<ErrorMessage error={errors.criador} />
 				</div>
 
-				<div className="inputGroup">
-					<label>Prioridade</label>
-					<select {...register('prioridade')}>
-						<option value="">Selecione a prioridade</option>
-						<option value="Alta">Alta</option>
-						<option value="Média">Média</option>
-						<option value="Baixa">Baixa</option>
+				<div className="inputGroup" role="group" aria-labelledby="labelPrioridade">
+					<label htmlFor="prioridade">Prioridade</label>
+					<select id="prioridade" {...register('prioridade')}>
+					<option value="">Selecione a prioridade</option>
+					<option value="Alta">Alta</option>
+					<option value="Média">Média</option>
+					<option value="Baixa">Baixa</option>
 					</select>
 					<ErrorMessage error={errors.prioridade} />
 				</div>
 
-				<div className="inputGroup">
-					<label>Status</label>
-					<select {...register('status')}>
-						<option value="">Selecione o status</option>
-						<option value="Fazer">Fazer</option>
-						<option value="Fazendo">Fazendo</option>
-						<option value="Feito">Feito</option>
+				<div className="inputGroup" role="group" aria-labelledby="labelStatus">
+					<label htmlFor="status">Status</label>
+					<select id="status" {...register('status')}>
+					<option value="">Selecione o status</option>
+					<option value="Fazer">Fazer</option>
+					<option value="Fazendo">Fazendo</option>
+					<option value="Feito">Feito</option>
 					</select>
 					<ErrorMessage error={errors.status} />
 				</div>
 
-				<span>
+				<fieldset aria-label="Ações do formulário">
 					<button className="SubmitBtn" type="submit">Cadastrar</button>
-					<p className={`mensagem ${tipoMensagem}`}>
-                        {tipoMensagem === 'sucesso' && <FaCheck />}
-                        {tipoMensagem == 'erro' && <GoAlertFill />}
-                        {mensagem}
-                    </p>
-				</span>
+					<p 
+						className={`mensagem ${tipoMensagem}`} 
+						role="status" 
+						aria-live="polite"
+					>
+						{tipoMensagem === 'sucesso' && <FaCheck />}
+						{tipoMensagem === 'erro' && <GoAlertFill />}
+						{mensagem}
+					</p>
+				</fieldset>
 			</form>
 		</main>
 	);
