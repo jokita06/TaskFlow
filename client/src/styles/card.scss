@@ -85,18 +85,20 @@
     input,
     textarea,
     select {
-      padding: 0.5rem;
-      border-radius: 8px;
-      border: 2px solid transparent;
+      padding: 0.8rem;
+      border-radius: 5px 5px 5px 5px;
       width: 100%;
       background-color: $gray;
       font-family: $font;
       resize: none;
       transition: all 0.3s ease;
+      outline: none;
+      border: none;
+      border-bottom: 2px solid transparent;
 
       &:focus {
         border-color: $font-color;
-        box-shadow: 0 0 8px rgba($font-color, 0.3);
+        box-shadow: 0 0 4px rgba($font-color, 0.3);
         background-color: lighten($gray, 3%);
       }
     }

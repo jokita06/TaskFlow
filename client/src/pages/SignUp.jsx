@@ -2,41 +2,16 @@ import '../styles/form.scss';
 import api from '../service/Service';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { IoAlertCircle } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
 import { GoAlertFill } from "react-icons/go";
- 
-const schemaSignUp = z.object({
-  username: z.string()
-    .trim() 
-    .nonempty({ message: "O nome é obrigatório" })
-    .regex(/^[A-Za-zÀ-ÿ\s]+$/, { message: "Digite apenas letras" })
-    .min(3, { message: "Mínimo 3 caracteres" })
-    .max(60, { message: "Máximo 60 caracteres" }),
-
-  email: z.string()
-    .trim()
-    .nonempty({ message: "O e-mail é obrigatório" })
-    .regex(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, {
-      message: "E-mail inválido"
-    })
-})
-
-function ErrorMessage({ error }) {
-  if (!error) return null;
-  return (
-    <p className="error" role="alert">
-      <IoAlertCircle /> {error.message}
-    </p>
-  );
-}
+import { schemaSignUp } from '../validations/userValidation';
+import { ErrorMessage } from "../components/ErrorMessage";
  
 export function SignUp() {
   const [mensagem, setMensagem] = useState('');
   const [tipoMensagem, setTipoMensagem] = useState('');
- 
+
   const {
     register,
     handleSubmit,
@@ -55,8 +30,8 @@ export function SignUp() {
       setTipoMensagem("sucesso");
       reset();
     } catch (error) {
-      setMensagem('Ocorreu um erro, tente novamente!');
       console.log(error);
+      setMensagem('Ocorreu um erro, tente novamente!');
       setTipoMensagem("erro");
     }
   }
@@ -64,7 +39,7 @@ export function SignUp() {
   return (
     <main>
       <form 
-        className="formulario" 
+        className="form" 
         method="POST" 
         onSubmit={handleSubmit(obterDados)}
         aria-labelledby="formTitle"
