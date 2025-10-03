@@ -1,5 +1,13 @@
 import { z } from "zod";
 
+const validateCharacterRepetition = (value) => {
+  return !/(.)\1{2,}/.test(value); 
+};
+
+const validateMultipleSpaces = (value) => {
+  return !/\s{2,}/.test(value); 
+};
+
 export const schemaTask = z.object({
   nome: z.string()
     .trim()
@@ -8,7 +16,13 @@ export const schemaTask = z.object({
       message: "Digite apenas letras"
     })
     .min(5, 'Mínimo 5 caracteres')
-    .max(60, 'Máximo 60 caracteres'),
+    .max(60, 'Máximo 60 caracteres')
+    .refine(validateMultipleSpaces, {
+      message: "Não são permitidos múltiplos espaços em branco"
+    })
+    .refine(validateCharacterRepetition, {
+      message: "Não são permitidas mais de 2 letras repetidas consecutivas"
+    }),
   
   descricao: z.string()
     .trim()
@@ -17,7 +31,13 @@ export const schemaTask = z.object({
       message: "O nome deve começar com letra e pode conter números"
     })
     .min(10, 'A descrição deve ter no mínimo 10 caracteres')
-    .max(255, 'A descrição deve ter no máximo 255 caracteres'),
+    .max(255, 'A descrição deve ter no máximo 255 caracteres')
+    .refine(validateMultipleSpaces, {
+      message: "Não são permitidos múltiplos espaços em branco"
+    })
+    .refine(validateCharacterRepetition, {
+      message: "Não são permitidas mais de 2 letras repetidas consecutivas"
+    }),
   
   setor: z.string()
     .trim()
@@ -26,7 +46,14 @@ export const schemaTask = z.object({
       message: "Digite apenas letras"
     })
     .min(3, 'Mínimo 3 caracteres')
-    .max(30, 'Máximo 30 caracteres'),
+    .max(30, 'Máximo 30 caracteres')
+    .refine(validateMultipleSpaces, {
+      message: "Não são permitidos múltiplos espaços em branco"
+    })
+    .refine(validateCharacterRepetition, {
+      message: "Não são permitidas mais de 2 letras repetidas consecutivas"
+    }),
+    
   criador: z.number({
     required_error: "O criador é obrigatório",
     invalid_type_error: "Selecione um criador válido"
