@@ -79,8 +79,9 @@
       transform: scale(0.98);
     }
   }
+}
 
-  .error {
+.error {
     display: flex;
     align-items: center;
     gap: 6px;
@@ -89,6 +90,7 @@
     padding: 10px 12px;
     border-radius: 8px;
     font-size: 0.9rem;
+    width: 100%;
   }
 
   .mensagem {
@@ -112,7 +114,6 @@
       border-left: 4px solid rgb(175, 6, 6);
     }
   }
-}
 
 @keyframes fadeIn {
   from {

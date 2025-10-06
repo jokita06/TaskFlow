@@ -27,7 +27,7 @@ export const schemaTask = z.object({
   descricao: z.string()
     .trim()
     .nonempty({ message: "A descrição é obrigatória" })
-    .regex(/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ0-9\s]*$/, { 
+    .regex(/^[A-Za-zÀ-ÿ0-9\s.,-]+$/, { 
       message: "O nome deve começar com letra e pode conter números"
     })
     .min(10, 'A descrição deve ter no mínimo 10 caracteres')
@@ -45,7 +45,7 @@ export const schemaTask = z.object({
     .regex(/^[A-Za-zÀ-ÿ\s]+$/, { 
       message: "Digite apenas letras"
     })
-    .min(3, 'Mínimo 3 caracteres')
+    .min(2, 'Mínimo 2 caracteres')
     .max(30, 'Máximo 30 caracteres')
     .refine(validateMultipleSpaces, {
       message: "Não são permitidos múltiplos espaços em branco"

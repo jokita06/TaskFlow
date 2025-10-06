@@ -5,8 +5,6 @@ import api from "../service/Service";
 import { Card } from "../components/Card";
 import "../styles/managementTask.scss";
 
-
-
 function Column({ id, title, tasks, setAllTasks }) {
 	const { setNodeRef, isOver } = useDroppable({ 
 		id,

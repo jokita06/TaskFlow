@@ -5,10 +5,10 @@ import { Modal } from "./Modal";
 import api from "../service/Service";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import "../styles/Card.scss";
-import "../styles/Form.scss";
 import { schemaTask } from "../validations/taskValidation";
 import { ErrorMessage } from "../components/ErrorMessage";
+import "../styles/Card.scss";
+import "../styles/form.scss"
 
 function TaskItem({ item, status, onOpenModal, onUpdateStatus }) {
   const { attributes, listeners, setNodeRef } = useDraggable({
