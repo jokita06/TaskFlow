@@ -3,9 +3,8 @@ import { describe, it, expect } from 'vitest';
 import { SignUp } from '../pages/SignUp.jsx';
 import '@testing-library/jest-dom';
 
-
 describe("Validações no formulário de cadastro usuário", () => {
-it('Deve renderizar o título e os campos do formulário', () => {
+  it('Deve renderizar o título e os campos do formulário', () => {
     render(<SignUp />);
 
     const heading = screen.getByRole('heading', { name: /cadastro de usuário/i });

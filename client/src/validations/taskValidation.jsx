@@ -27,7 +27,7 @@ export const schemaTask = z.object({
   descricao: z.string()
     .trim()
     .nonempty({ message: "A descrição é obrigatória" })
-    .regex(/^[A-Za-zÀ-ÿ0-9\s.,-]+$/, { 
+    .regex(/^[A-Za-zÀ-ÿ][A-Za-zÀ-ÿ0-9\s.,-]*$/, { 
       message: "O nome deve começar com letra e pode conter números"
     })
     .min(10, 'A descrição deve ter no mínimo 10 caracteres')
@@ -54,10 +54,8 @@ export const schemaTask = z.object({
       message: "Não são permitidas mais de 2 letras repetidas consecutivas"
     }),
     
-  criador: z.number({
-    required_error: "O criador é obrigatório",
-    invalid_type_error: "Selecione um criador válido"
-  }),
+  criador: z.number().positive("O criador é obrigatório"), 
+
   prioridade: z.string()
     .min(1, 'A prioridade é obrigatória'),
   status: z.string()

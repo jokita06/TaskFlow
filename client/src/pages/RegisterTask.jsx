@@ -101,7 +101,7 @@ export function RegisterTask() {
         <div className="inputGroup" role="group" aria-labelledby="labelCriador">
           <label htmlFor="criador">Criador</label>
           <select id="criador" {...register('criador', { valueAsNumber: true })}>
-            <option value="">Selecione um criador</option>
+            <option value="0">Selecione um criador</option>
             {users.map(user => (
               <option key={user.id} value={user.id}>
                 {user.username}
