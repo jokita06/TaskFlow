@@ -1,4 +1,4 @@
-import { SignUp } from '../pages/signUp';
+import { SignUp } from '../pages/SignUp';
 import { Routes, Route } from 'react-router-dom';
 import { RegisterTask } from '../pages/RegisterTask';
 import { ManagementTask } from '../pages/ManagemantTask';

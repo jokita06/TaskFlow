@@ -1,26 +1,32 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { SignUp } from "../pages/signUp";
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { SignUp } from '../pages/SignUp.jsx';
+import '@testing-library/jest-dom';
 
-describe("Validações do Input Nome", () => {
-  it("Deve aceitar nome válido", async () => {
+
+describe("Validações no formulário de cadastro usuário", () => {
+it('Deve renderizar o título e os campos do formulário', () => {
     render(<SignUp />);
-    
+
+    const heading = screen.getByRole('heading', { name: /cadastro de usuário/i });
+    expect(heading).toBeInTheDocument();
+
     const nameInput = screen.getByLabelText(/nome/i);
-    const submitButton = screen.getByRole("button", { name: /cadastrar/i });
+    expect(nameInput).to.exist;
 
-    fireEvent.change(nameInput, { target: { value: "João Silva" } });
-    fireEvent.click(submitButton);
+    const emailInput = screen.getByLabelText(/e-mail/i);
+    expect(emailInput).to.exist;
 
-    await waitFor(() => {
-      expect(screen.queryByText(/o nome é obrigatório/i)).not.toBeInTheDocument();
-      expect(screen.queryByText(/digite apenas letras/i)).not.toBeInTheDocument();
-    });
+    const submitButton = screen.getByRole('button', { name: /cadastrar/i });
+    expect(submitButton).to.exist;
+
+    const statusMessage = screen.getByRole('status');
+    expect(statusMessage).to.exist;
   });
 
   it("Deve mostrar erro quando nome está vazio", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -34,7 +40,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando nome tem menos de 3 caracteres", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -48,7 +54,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando nome tem mais de 60 caracteres", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -63,7 +69,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando nome contém números", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -77,7 +83,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando nome contém caracteres especiais", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -91,7 +97,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando há múltiplos espaços em branco", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -105,11 +111,11 @@ describe("Validações do Input Nome", () => {
 
   it("Deve mostrar erro quando há mais de 2 letras repetidas consecutivas", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
-    fireEvent.change(nameInput, { target: { value: "Jooão Silva" } });
+    fireEvent.change(nameInput, { target: { value: "Joooão Silva" } });
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -119,7 +125,7 @@ describe("Validações do Input Nome", () => {
 
   it("Deve aceitar nome com acentos e ç", async () => {
     render(<SignUp />);
-    
+
     const nameInput = screen.getByLabelText(/nome/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -130,12 +136,10 @@ describe("Validações do Input Nome", () => {
       expect(screen.queryByText(/digite apenas letras/i)).not.toBeInTheDocument();
     });
   });
-});
 
-describe("Validações do Input Email", () => {
   it("Deve aceitar email válido", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -149,7 +153,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve mostrar erro quando email está vazio", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -163,7 +167,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve mostrar erro para email sem @", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -177,7 +181,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve mostrar erro para email sem domínio", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -191,7 +195,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve mostrar erro para email com domínio inválido", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -205,7 +209,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve aceitar emails com subdomínios", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -219,7 +223,7 @@ describe("Validações do Input Email", () => {
 
   it("Deve aceitar emails com caracteres especiais no nome", async () => {
     render(<SignUp />);
-    
+
     const emailInput = screen.getByLabelText(/e-mail/i);
     const submitButton = screen.getByRole("button", { name: /cadastrar/i });
 
@@ -231,3 +235,4 @@ describe("Validações do Input Email", () => {
     });
   });
 });
+
