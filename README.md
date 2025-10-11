@@ -1,17 +1,15 @@
 # 🗂️ TaskFlow
 
-TaskFlow é um projeto acadêmico de gerenciamento de tarefas no estilo **Kanban**.  
-Durante o desenvolvimento, trabalhei em aspectos fundamentais como a **validação de formulários** e a **implementação de recursos de acessibilidade**, garantindo uma experiência de uso inclusiva e eficiente.  
+TaskFlow is an academic **Kanban-style** task management project.  
+During development, I worked on fundamental aspects such as **form validation** and **accessibility features implementation**, ensuring an inclusive and efficient user experience.  
 
-Também aprendi a **testar meu código** para garantir a **qualidade** e o bom funcionamento da aplicação.
+I also learned to **test my code** to guarantee **quality** and proper application functionality.
 
+## Main Screen
 
-## Tela Principal
+![TaskFlow Main Screen](./client/src/assets/TaskFlow.png)
 
-![Tela Principal do TaskFlow](./client/src/assets/TaskFlow.png)
-
-
-## Tecnologias Utilizadas
+## Technologies Used
 
 <div style="display: flex; gap: 10px; align-items: center;">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" width="40" title="React"/>
@@ -19,38 +17,36 @@ Também aprendi a **testar meu código** para garantir a **qualidade** e o bom f
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" width="40" title="Django"/>
 </div>
 
+## Main Features
+- Task organization in **Kanban-style** columns
+- **Form validation** to ensure data integrity
+- **Enhanced accessibility** with semantic tags and ARIA attributes
+- Intuitive interface
 
-## Funcionalidades Principais
-- Organização de tarefas em colunas no estilo **Kanban**
-- **Validação de formulários** para garantir a integridade dos dados
-- **Acessibilidade aprimorada** com uso de tags semânticas e atributos ARIA
-- Interface intuitiva
-
-
-## ⚙️ Como Executar o Projeto
+## ⚙️ How to Run the Project
 
 ```bash
-# Clone o repositório
+# Clone the repository
 git clone https://github.com/jokita06/TaskFlow.git
 
-# Acesse a pasta do projeto
+# Access the project folder
 cd taskflow
 
-# Instale as dependências do frontend
+# Install frontend dependencies
 cd client
 npm install
 
-## Inicie o servidor React
+## Start React server
 npm run dev
 
-# Em outro terminal, acesse o backend
+# In another terminal, access the backend
 cd server
 
-## Crie um ambiente virtual 
+## Create a virtual environment
 python -m venv env
 
-## Baixe as depêndencias
+## Install dependencies
 pip install -r requirements.txt
 
-# Inicie o servidor Django
+# Start Django server
 python manage.py runserver
